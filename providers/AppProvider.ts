@@ -13,6 +13,8 @@ export default class AppProvider {
 
   public async ready() {
     // App is ready
+	const scheduler = this.app.container.use("Adonis/Addons/Scheduler");
+	scheduler.run()
   }
 
   public async shutdown() {

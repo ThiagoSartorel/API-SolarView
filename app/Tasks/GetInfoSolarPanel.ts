@@ -4,7 +4,7 @@ import Solar from 'App/Models/Solar'
 
 export default class GetInfoSolarPanel extends BaseTask {
 	public static get schedule() {
-		return '0 * * * * *'
+		return '0 0 * * * *'
 	}
 	/**
 	 * Set enable use .lock file for block run retry task
