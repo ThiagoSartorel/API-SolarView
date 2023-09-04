@@ -11,7 +11,7 @@ Um projeto simples que busca informações dentro do solarview e salva em um ban
 
 ```typescript
 public static get schedule() {
-  return '0 0 * * * *';
+  return '0 0 * * * *'; // Sepre que os segundos e minutos forem 0, ou seja a cada hora
 }
 ```
 
