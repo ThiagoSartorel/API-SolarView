@@ -1,7 +1,9 @@
-# Projeto AdonisJs - Monitoramento de Painel Solar Uniplac 
+# API em AdonisJs - Monitoramento de paineis solares
+**Solar View**
+
 <img alt="Static Badge" src="https://img.shields.io/badge/Working-green?label=Status">
 
-Um projeto simples que busca informações dentro do solarview e salva em um banco de dados e deixa livre para consulta de serviços terceiros.
+Um projeto simples que automatiza a coleta de informações do SolarView e as armazena em um banco de dados acessível para consulta por serviços terceiros. Este projeto visa simplificar a obtenção e o compartilhamento de dados. Facilitando automações e monitoramento dos equipamentos.
 
 ## Importante
 
