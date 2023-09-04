@@ -22,7 +22,12 @@ import Route from '@ioc:Adonis/Core/Route'
 import Solar from 'App/Models/Solar'
 
 
-Route.get('/', async () => {
+Route.get('/all', async () => {
   const solarInfo = await Solar.all()
+  return solarInfo
+})
+
+Route.get('/last', async () => {
+  const solarInfo = await Solar.query().orderBy('created_at', 'desc').first()
   return solarInfo
 })
