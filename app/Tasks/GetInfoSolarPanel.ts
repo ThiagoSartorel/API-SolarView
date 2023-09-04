@@ -1,10 +1,10 @@
 import { BaseTask } from 'adonis5-scheduler/build'
-import axios from 'axios'
-import Solar from 'App/Models/Solar'
-
+import Auth from 'App/Helper/Auth'
+import GetInfo from 'App/Helper/GetInfo'
+import Store from 'App/Helper/Store'
 export default class GetInfoSolarPanel extends BaseTask {
 	public static get schedule() {
-		return '0 * * * * *'
+		return '0 0 * * * *'
 	}
 	/**
 	 * Set enable use .lock file for block run retry task
@@ -16,42 +16,21 @@ export default class GetInfoSolarPanel extends BaseTask {
 
 	public async handle() {
 		try {
-			//? Realizar login
-			//? Salvar ckTku
+			//? Funcao Auth realiza a autenticacao no solarview
+			const ckTkU = await Auth()
+			//? Coletado as informacoes do solarview
+			if (ckTkU) {
+				const info = await GetInfo(ckTkU)
+				if (info) {
+					//? Salvar dados recebidos
+					Store(info)
+				}
+			}
 
-			const login = await axios.post(process.env.URL_SOLAR + "api/auth/login", {
-				"email": process.env.EMAIL_SOLAR,
-				"password": process.env.PASSORD_SOLAR,
-				"token": process.env.TOKEN_SOLAR
-			})
-
-			const ckTkU = login.data.cookies.ckTkU
-
-			const config = {
-				headers: {
-					'Solarview-Tokenuniversal': ckTkU,
-				},
-			};
-
-			//? Pegar dados Gerais
-			const geral = await axios.post(process.env.URL_SOLAR + "portfolio/info", null, config)
-			//inserir objeto em um sqlite
-			await Solar.create({
-				total_consumer_unit: geral.data.totalConsumerUnit,
-				total_system_size: geral.data.totalSystemSize,
-				total_generation_instant_power: geral.data.totalGenerationInstantPower,
-				total_generated_energy: geral.data.totalGeneratedEnergy,
-				total_finantial_generation_energy: geral.data.totalFinantialGenerationEnergy,
-				total_trees: geral.data.totalTrees,
-				sustentabilidade_co2_total: geral.data.sustentabilidadeCO2Total,
-				energia_gerada_total: geral.data.energiaGeradaTotal,
-				banhos: geral.data.banhos,
-				geladeiras: geral.data.geladeiras
-			})
-			console.log("NewInformations...")
+			const date = new Date()
+			console.log("|V| ...", date.toLocaleDateString(), "-", date.toLocaleTimeString())
 		} catch (err) {
-			console.log("Ocorreu um erro ao buscar dados!")
+			console.log(err.message)
 		}
-
 	}
 }
