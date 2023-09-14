@@ -28,6 +28,33 @@ Um projeto simples que automatiza a coleta de informações do SolarView e as ar
   ```
   - Copie o `token`, e adicione-o ao campo `TOKEN` em seu arquivo `.env`.
 
+### Criando um Banco de Dados SQLite (se você pretende usar o SQLite)
+
+1. Navegue até a **raiz** do seu projeto.
+
+2. Dentro da raiz do projeto, **crie** uma pasta chamada `tmp` se ela ainda não existir.
+
+3. Agora, dentro da pasta `tmp`, **crie** um arquivo chamado `db.sqlite3`.
+
+### Iniciando ambiente
+
+1. Instale as dependências:
+```bash
+npm install
+```
+
+2. Execute as migrações:
+```bash
+node ace migration:run
+```
+
+3. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+Seu servidor estará disponível em [http://localhost:3333](http://localhost:3333).
+
 ### Alterando tempo de execução
 
 1. Abra o arquivo ``app/Tasks/GetInfoSolarPanel.ts`` no seu editor de código.
