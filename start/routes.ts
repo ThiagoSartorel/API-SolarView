@@ -19,8 +19,8 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Database from '@ioc:Adonis/Lucid/Database'
 import Solar from 'App/Models/Solar'
-
 
 Route.get('/all', async () => {
   const solarInfo = await Solar.all()
@@ -30,4 +30,10 @@ Route.get('/all', async () => {
 Route.get('/last', async () => {
   const solarInfo = await Solar.query().orderBy('created_at', 'desc').first()
   return solarInfo
+})
+
+Route.get('/today', async () => {
+  const today = new Date().toISOString().split('T')[0]
+  const solarInfo = await Database.rawQuery(`select * from solars WHERE DATE(created_at) = '${today}' `)
+  return solarInfo;
 })
