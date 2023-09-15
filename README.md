@@ -90,5 +90,8 @@ Retorna **todas** a informações armazenadas:
 Retorna apenas o **último** registro:
 <pre><strong>GET </strong><span>/last</span></pre>
 
+Retorna apenas registros dos **dia**:
+<pre><strong>GET </strong><span>/today</span></pre>
+
 ##
 Created by **Thiago Sartorel** on **01/09/2023**.
