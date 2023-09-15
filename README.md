@@ -7,7 +7,7 @@ Um projeto simples que automatiza a coleta de informações do SolarView e as ar
 
 ## Importante
 
-### Criação das variáves de ambiente
+### Criação das variáveis de ambiente
 
 1. **Crie um arquivo `.env`**: Siga o exemplo do `.env.example`.
 
