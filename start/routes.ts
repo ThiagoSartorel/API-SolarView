@@ -22,6 +22,10 @@ import Route from '@ioc:Adonis/Core/Route'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Solar from 'App/Models/Solar'
 
+Route.get('/', async () => {
+  return { Service: 'SolarPanel', status: "Runnig" }
+})
+
 Route.get('/all', async () => {
   const solarInfo = await Solar.all()
   return solarInfo
