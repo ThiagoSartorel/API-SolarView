@@ -30,9 +30,9 @@ import { join } from 'path'
 
 sourceMapSupport.install({ handleUncaughtExceptions: false })
 
-const privateKey = readFileSync(join(__dirname + '/sslCert/privadakey35477.key'), 'utf8');
-const certificate = readFileSync(join(__dirname + '/sslCert/certificado35477.crt'), 'utf8');
-const ca = readFileSync(join(__dirname + '/sslCert/root_ca35477.crt'), 'utf8');
+const privateKey = readFileSync(join(__dirname + '../../sslCert/privadakey35477.key'), 'utf8');
+const certificate = readFileSync(join(__dirname + '../../sslCert/certificado35477.crt'), 'utf8');
+const ca = readFileSync(join(__dirname + '../../sslCert/root_ca35477.crt'), 'utf8');
 
 new Ignitor(__dirname).httpServer().start((handle) => {
 	return createServer(
